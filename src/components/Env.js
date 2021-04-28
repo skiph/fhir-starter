@@ -1,5 +1,7 @@
 require('dotenv').config()
 
-export default {
+const Env = {
   description: "Local Environment",
 }
+
+export default Env
