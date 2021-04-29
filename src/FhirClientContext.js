@@ -6,8 +6,8 @@ const context = {
         context.client = client;
     },
     patientId: null,
-    setPatientId: function(client) {
-        context.client = client;
+    setPatientId: function(patientId) {
+        context.patientId = patientId;
     }
 };
 

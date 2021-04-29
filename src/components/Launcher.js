@@ -29,7 +29,7 @@ export default class Launcher extends React.Component {
         const secret_client_id = "REACT_APP_CLIENT_ID_" + providerKey
         if( secret_client_id in process.env ) {
             fhirconfig.client_id = process.env[secret_client_id]
-            alert(`providerKey: ${providerKey}, clientid: ${fhirconfig.client_id}, secret: ${process.env[secret_client_id]}`)
+            // alert(`providerKey: ${providerKey}, clientid: ${fhirconfig.client_id}, secret: ${process.env[secret_client_id]}`)
         }
 
         const options = {
@@ -55,7 +55,7 @@ export default class Launcher extends React.Component {
             context.setPatientId(fhirconfig.patientId)
         }
 
-        alert(`options:  ${JSON.stringify(options)}`)
+        // alert(`options:  ${JSON.stringify(options)}`)
         SMART.authorize(options);
     }
 

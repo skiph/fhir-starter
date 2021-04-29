@@ -18,31 +18,52 @@ export default class Chart extends React.Component {
                 flat: true
             })
             .then(bp => {
-                const bpMap = {
-                    systolic: [],
-                    diastolic: []
-                };
-                bp.forEach(o => {
-                    o.component.forEach(c => {
-                        const code = client.getPath(c, "code.coding.0.code");
-                        if (code === "8480-6") {
-                            bpMap.systolic.push({
-                                x: new Date(o.effectiveDateTime),
-                                y: c.valueQuantity.value
+                try {
+                    if (bp && bp.length > 0 && bp[0].component) {
+                        console.log(`bp[0].component: ${bp[0].component}`)
+                        const bpMap = {
+                            systolic: [],
+                            diastolic: []
+                        };
+                        bp.forEach(o => {
+                            console.log(`bp[o] component: ${o.component}`)
+                            o.component.forEach(c => {
+                                const code = client.getPath(c, "code.coding.0.code");
+                                if (code === "8480-6") {
+                                    bpMap.systolic.push({
+                                        x: new Date(o.effectiveDateTime),
+                                        y: c.valueQuantity.value
+                                    });
+                                } else if (code === "8462-4") {
+                                    bpMap.diastolic.push({
+                                        x: new Date(o.effectiveDateTime),
+                                        y: c.valueQuantity.value
+                                    });
+                                }
                             });
-                        } else if (code === "8462-4") {
-                            bpMap.diastolic.push({
-                                x: new Date(o.effectiveDateTime),
-                                y: c.valueQuantity.value
-                            });
+                        });
+                        bpMap.systolic.sort((a, b) => a.x - b.x);
+                        bpMap.diastolic.sort((a, b) => a.x - b.x);
+                        if (bpMap.systolic.length > 0 || bpMap.diastolic.length > 0) {
+                            this.renderChart(bpMap);
+                        } else {
+                            this.renderNoBP()
                         }
-                    });
-                });
-                bpMap.systolic.sort((a, b) => a.x - b.x);
-                bpMap.diastolic.sort((a, b) => a.x - b.x);
-                this.renderChart(bpMap);
-            });
+                } else {
+                    this.renderNoBP()
+                }
+            } catch (e) {
+                this.renderNoBP()
+            }
+        });
     } // end function
+
+    renderNoBP() {
+        const canvas = document.getElementById('myChart');
+        const ctx = canvas.getContext('2d');
+        ctx.font = '24px serif';
+        ctx.fillText('Blood Pressure Not Available', 0, 50);
+    }
 
     renderChart({ systolic, diastolic }) {
         this.chart = new ChartJS("myChart", {
