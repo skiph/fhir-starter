@@ -1,32 +1,32 @@
 {
-    "smarthealthit" : {
-        "client_id": "not_used",
-        "scope": "launch launch/patient patient/*.read offline_access",
-        "redirectUri": "./redirect",
-        "url": "https://launch.smarthealthit.org/v/r3/sim/eyJoIjoiMSIsImIiOiJmMDQ2MjkzNi1lYjRiLTRkYTEtYjQ1YS1mYmQ5NmViZjhjY2IiLCJlIjoic21hcnQtUHJhY3RpdGlvbmVyLTcxNjE0NTAyIn0/fhir",
-        "patientId": "f0462936-eb4b-4da1-b45a-fbd96ebf8ccb",
-        "patientName": "Hai Champlin",
-        "comments": {
-            "note1": "Simulates a patient login at smarthealthit.org",
-            "note2": "The URL contains the patient ID embedded in JWT"
-        }
-    },
-    "cerner" : {
-        "client_id": "taken from .env.local",
-        "scope": "openid profile patient/Patient.read patient/AllergyIntolerance.read patient/Condition.read patient/Observation.read launch/patient",
-        "redirectUri": "./redirect",
-        "url": "https://fhir-myrecord.cerner.com/r4/ec2458f2-1e24-41c8-b71b-0e701af7583d",
-        "comments": {
-            "note1": "Cerner APP Required see README.md"
-        }
-    },
-    "epic" : {
-        "client_id": "taken from .env.local",
-        "scope": "openid profile patient/Patient.read",
-        "redirectUri": "./redirect",
-        "url": "https://fhir.epic.com/interconnect-fhir-oauth/api/FHIR/R4/",
-        "comments": {
-            "note1": "EPIC APP Required see README.md"
-        }
+  "smarthealthit": {
+    "client_id": "not_used",
+    "scope": "launch launch/patient patient/*.read offline_access",
+    "redirectUri": "./redirect",
+    "url": "https://launch.smarthealthit.org/v/r3/sim/eyJoIjoiMSIsImIiOiJmMDQ2MjkzNi1lYjRiLTRkYTEtYjQ1YS1mYmQ5NmViZjhjY2IiLCJlIjoic21hcnQtUHJhY3RpdGlvbmVyLTcxNjE0NTAyIn0/fhir",
+    "patientId": "f0462936-eb4b-4da1-b45a-fbd96ebf8ccb",
+    "patientName": "Hai Champlin",
+    "comments": {
+      "note1": "Simulates a patient login at smarthealthit.org",
+      "note2": "The URL contains the patient ID embedded in JWT"
     }
+  },
+  "cerner": {
+    "client_id": "taken from .env.local",
+    "scope": "openid profile patient/Patient.read patient/AllergyIntolerance.read patient/Condition.read patient/Observation.read launch/patient online_access",
+    "redirectUri": "./redirect",
+    "url": "https://fhir-myrecord.cerner.com/r4/ec2458f2-1e24-41c8-b71b-0e701af7583d",
+    "comments": {
+      "note1": "Cerner APP Required see README.md"
+    }
+  },
+  "epic": {
+    "client_id": "taken from .env.local",
+    "scope": "openid profile patient/Patient.read offline_access",
+    "redirectUri": "./redirect",
+    "url": "https://fhir.epic.com/interconnect-fhir-oauth/api/FHIR/R4/",
+    "comments": {
+      "note1": "EPIC APP Required see README.md"
+    }
+  }
 }
